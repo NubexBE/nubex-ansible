@@ -20,7 +20,7 @@ nubex-ansible/
 
 ## Usage
 
-1. **Install packages
+1. **Install packages**:
     ```sh
     apt update && apt install git ansible -y
     ```
