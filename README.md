@@ -20,9 +20,14 @@ nubex-ansible/
 
 ## Usage
 
-1. **Run ansible-pull**:
+1. **Install packages
+    ```sh
+    apt update && apt install git ansible -y
+    ```
+
+2. **Run ansible-pull**:
    ```sh
-   ansible-pull -U https://github.com/your-org/nubex-ansible.git -i inventory/localhost playbooks/bootstrap.yml
+   ansible-pull -U https://github.com/NubexBE/nubex-ansible.git -i inventory/localhost playbooks/bootstrap.yml
    ```
 
    - `-U`: URL of this repository
