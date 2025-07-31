@@ -1,11 +1,5 @@
 - hosts: localhost
   become: true
 
-  pre_tasks:
-    - name: Install required Galaxy roles
-      ansible.builtin.command:
-        cmd: ansible-galaxy install -r requirements.yml --roles-path=./roles
-      changed_when: false
-
   roles:
     - role: geerlingguy.docker
