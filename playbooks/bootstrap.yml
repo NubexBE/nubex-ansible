@@ -1,13 +1,11 @@
 - hosts: localhost
   become: true
-  vars_files:
-    - vars/users.yml
 
   roles:
     - role: geerlingguy.docker
+    - role: add_user
 
   tasks:
-    - import_tasks: tasks/create_user_with_gh_key.yml
     - name: Ensure Docker service is running
       service:
         name: docker
