@@ -15,8 +15,10 @@
         mode: ug=rwx
     - name: Clone repo into target directory
       ansible.builtin.git:
-        repo: https://github.com/NubexBE/nubex-ansible/tree/master/playbooks
-        dest: /srv/omop
+        repo: https://github.com/NubexBE/nubex-ansible.git
+        key_file: ~/.ssh/.git_deploy_key
+        accept_newhostkey: true
         version: main
         force: yes
-        accept_newhostkey: true
+        update: yes
+        dest: /srv/omop
