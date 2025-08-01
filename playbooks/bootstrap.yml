@@ -13,5 +13,3 @@
         group: docker
         recurse: true
         mode: ug=rwxs,o=rx
-      debug:
-        msg: "Controlling /srv directory with appropriate permissions."
