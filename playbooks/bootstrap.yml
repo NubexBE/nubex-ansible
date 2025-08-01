@@ -1,10 +1,13 @@
 - hosts: localhost
   become: true
+  vars_files:
+    - vars/users.yml
 
   roles:
     - role: geerlingguy.docker
 
-  post_tasks:
+  tasks:
+    - import_tasks: tasks/create_user_with_gh_key.yml
     - name: Ensure Docker service is running
       service:
         name: docker
@@ -30,4 +33,13 @@
           - htop
           - mc
           - tmux
+    - name: Add users
+      user:
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+        groups: "{{ item.groups }}"
+        shell: /bin/bash
+        create_home: yes
+        state: present
+      loop: "{{ users_to_add }}"
     

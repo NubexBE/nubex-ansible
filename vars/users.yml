@@ -1,0 +1,4 @@
+users:
+  - name: temir
+    gh_user_name: temir
+    groups: ["sudo"]

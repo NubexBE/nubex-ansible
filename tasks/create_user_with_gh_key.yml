@@ -1,0 +1,39 @@
+- name: Ensure user account exists
+  user:
+    name: "{{ item.name }}"
+    home: "/home/{{ item.name }}"
+    shell: /bin/bash
+    groups: "{{ item.groups | join(',') }}"
+    append: true
+    create_home: true
+  loop: "{{ users }}"
+
+- name: Ensure .ssh directory exists in custom home
+  file:
+    path: "/home/{{ item.name }}/.ssh"
+    state: directory
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: '0700'
+  loop: "{{ users }}"
+
+- name: Try to fetch GitHub public key
+  uri:
+    url: "https://github.com/{{ item.gh_user_name }}.keys"
+    return_content: true
+    status_code: 200
+  register: github_keys
+  failed_when: false
+  loop: "{{ users }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Add GitHub key to authorized_keys if available
+  copy:
+    content: "{{ github_keys.results[loop.index0].content }}"
+    dest: "/srv/users/{{ item.name }}/.ssh/authorized_keys"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: '0600'
+  when: github_keys.results[loop.index0].status == 200 and github_keys.results[loop.index0].content | length > 0
+  loop: "{{ github_users }}"
