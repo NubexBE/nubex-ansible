@@ -1,6 +1,6 @@
 users:
   - name: temir
-    gh_user_name: tim-nubex
+    gh_user_name: temir
     groups:             # or ['sudo', 'docker', 'ubuntu']
       - sudo
       - docker
