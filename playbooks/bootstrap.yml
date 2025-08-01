@@ -3,3 +3,15 @@
 
   roles:
     - role: geerlingguy.docker
+
+  post_tasks:
+    - name: Ensure '/srv' exists and has docker group-write, setuid, setgid
+      file:
+        path: '/srv'
+        state: directory
+        owner: root
+        group: docker
+        recurse: true
+        mode: ug=rwxs,o=rx
+      debug:
+        msg: "Controlling /srv directory with appropriate permissions."
