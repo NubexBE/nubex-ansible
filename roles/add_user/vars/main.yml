@@ -1,4 +1,7 @@
 users:
   - name: temir
-    gh_user_name: temir
-    groups: ["sudo"]
+    gh_user_name: tim-nubex
+    groups:             # or ['sudo', 'docker', 'ubuntu']
+      - sudo
+      - docker
+      - ubuntu
