@@ -18,9 +18,16 @@
         group: docker
         recurse: true
         mode: g=rwx
-    - name: Clone repo into target directory
-      git:
-        repo: git@github.com:edencehealth/drive_pilot_deployment.git
-        accept_newhostkey: true
-        dest: /srv/omop
-        key_file: /home/ubuntu/.ssh/id_rsa_git # Adjust path as necessary, use full path
+    # - name: Clone repo into target directory
+    #   git:
+    #     repo: git@github.com:edencehealth/drive_pilot_deployment.git
+    #     accept_newhostkey: true
+    #     dest: /srv/omop
+    #     key_file: /home/ubuntu/.ssh/id_rsa_git # Adjust path as necessary, use full path
+    - name: Install packages
+      package:
+        name:
+          - htop
+          - mc
+          - tmux
+    
