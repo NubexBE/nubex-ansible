@@ -30,14 +30,4 @@
         name:
           - htop
           - mc
-          - tmux
-    - name: Add users
-      user:
-        name: "{{ item.name }}"
-        uid: "{{ item.uid }}"
-        groups: "{{ item.groups }}"
-        shell: /bin/bash
-        create_home: yes
-        state: present
-      loop: "{{ users_to_add }}"
-    
+          - tmux    
