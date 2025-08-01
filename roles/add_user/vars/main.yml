@@ -1,13 +1,7 @@
 users:
-  - name: temir
-    gh_user_name: temir
+  - name: joe           # Example user
+    gh_user_name: joe   # Example GitHub username
     groups:             # or ['sudo', 'docker', 'ubuntu']
-      - sudo
-      - docker
-      - ubuntu
-  - name: jelle
-    gh_user_name: jvdk13
-    groups:
       - sudo
       - docker
       - ubuntu

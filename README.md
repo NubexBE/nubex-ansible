@@ -12,6 +12,7 @@ nubex-ansible/
 │   └── bootstrap.yml
 ├── roles/
 │   └── geerlingguy.docker/ 
+|   └── add_user/ 
 ├── ansible.cfg
 ├── requirements.yml
 └── README.md
@@ -33,6 +34,37 @@ nubex-ansible/
    - `-U`: URL of this repository
    - `-i`: Path to the inventory file
    - The last argument is the main playbook to execute
+
+3. **Update add_user Role**:
+    
+    Add users in bootstrap.yml
+
+   ```yaml
+    - role: add_user
+      vars:
+        users:
+          - name: joe           # Example user
+            gh_user_name: joe   # Example GitHub username
+            groups:             # or ['sudo', 'docker', 'ubuntu']
+              - sudo
+              - docker
+              - ubuntu
+          - name: nick
+            gh_user_name: nick
+            groups: ["sudo"] 
+   ```
+
+   or change variable file in Role: /roles/add_user/vars/mian.yaml
+
+   ```yaml
+    users:
+    - name: joe           # Example user
+        gh_user_name: joe   # Example GitHub username
+        groups:             # or ['sudo', 'docker', 'ubuntu']
+        - sudo
+        - docker
+        - ubuntu
+   ```
 
 ## References
 
