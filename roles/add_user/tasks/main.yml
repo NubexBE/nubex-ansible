@@ -48,3 +48,4 @@
         ❌ Failed to fetch key for {{ item.item.name }} (GitHub user may not exist)
       {% endif %}
   loop: "{{ github_keys.results }}"
+  no_log: true
