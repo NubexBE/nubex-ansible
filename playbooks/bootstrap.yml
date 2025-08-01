@@ -17,7 +17,7 @@
       ansible.builtin.git:
         repo: https://github.com/NubexBE/nubex-ansible.git
         accept_newhostkey: true
-        version: main
+        version: master
+        dest: /srv/omop
         force: yes
         update: yes
-        dest: /srv/omop
