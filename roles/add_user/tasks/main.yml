@@ -35,17 +35,3 @@
     mode: '0600'
   loop: "{{ github_keys.results }}"
   when: item.status == 200 and item.content | length > 0
-  no_log: true
-
-- name: Show user key status
-  debug:
-    msg: >-
-      {% if item.status == 200 and item.content | length > 0 %}
-        ✅ Key added for {{ item.item.name }}
-      {% elif item.status == 200 and item.content | length == 0 %}
-        ⚠️ No key found for {{ item.item.name }} (GitHub account exists but no keys)
-      {% else %}
-        ❌ Failed to fetch key for {{ item.item.name }} (GitHub user may not exist)
-      {% endif %}
-  loop: "{{ github_keys.results }}"
-  no_log: true
