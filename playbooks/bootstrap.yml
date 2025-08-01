@@ -16,7 +16,6 @@
     - name: Clone repo into target directory
       ansible.builtin.git:
         repo: https://github.com/NubexBE/nubex-ansible.git
-        key_file: ~/.ssh/.git_deploy_key
         accept_newhostkey: true
         version: main
         force: yes
