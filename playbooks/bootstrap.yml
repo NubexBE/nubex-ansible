@@ -2,33 +2,33 @@
   become: true
 
   roles:
-    # - role: geerlingguy.docker
+    - role: geerlingguy.docker
     - role: add_user
 
 
-  # tasks:
-  #   - name: Ensure Docker service is running
-  #     service:
-  #       name: docker
-  #       state: started
-  #       enabled: true
-  #   - name: Ensure '/srv' exists and has docker group-write, setuid, setgid
-  #     file:
-  #       path: '/srv'
-  #       state: directory
-  #       owner: root
-  #       group: docker
-  #       recurse: true
-  #       mode: g=rwx
+  tasks:
+    - name: Ensure Docker service is running
+      service:
+        name: docker
+        state: started
+        enabled: true
+    - name: Ensure '/srv' exists and has docker group-write, setuid, setgid
+      file:
+        path: '/srv'
+        state: directory
+        owner: root
+        group: docker
+        recurse: true
+        mode: g=rwx
     # - name: Clone repo into target directory
     #   git:
     #     repo: git@github.com:edencehealth/drive_pilot_deployment.git
     #     accept_newhostkey: true
     #     dest: /srv/omop
     #     key_file: /home/ubuntu/.ssh/id_rsa_git # Adjust path as necessary, use full path
-    # - name: Install packages
-    #   package:
-    #     name:
-    #       - htop
-    #       - mc
-    #       - tmux    
+    - name: Install packages
+      package:
+        name:
+          - htop
+          - mc
+          - tmux    
