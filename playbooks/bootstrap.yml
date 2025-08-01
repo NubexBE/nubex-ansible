@@ -5,6 +5,11 @@
     - role: geerlingguy.docker
 
   post_tasks:
+    - name: Ensure Docker service is running
+      service:
+        name: docker
+        state: started
+        enabled: true
     - name: Ensure '/srv' exists and has docker group-write, setuid, setgid
       file:
         path: '/srv'
@@ -12,12 +17,10 @@
         owner: root
         group: docker
         recurse: true
-        mode: ug=rwx
+        mode: g=rwx
     - name: Clone repo into target directory
-      ansible.builtin.git:
-        repo: https://github.com/NubexBE/nubex-ansible.git
+      git:
+        repo: git@github.com:edencehealth/drive_pilot_deployment.git
         accept_newhostkey: true
-        version: master
         dest: /srv/omop
-        force: yes
-        update: yes
+        key_file: /home/ubuntu/.ssh/id_rsa_git # Adjust path as necessary, use full 
