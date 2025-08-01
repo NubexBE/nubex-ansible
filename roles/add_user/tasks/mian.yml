@@ -36,4 +36,4 @@
     group: "{{ item.name }}"
     mode: '0600'
   when: github_keys.results[loop.index0].status == 200 and github_keys.results[loop.index0].content | length > 0
-  loop: "{{ github_users }}"
+  loop: "{{ users }}"
