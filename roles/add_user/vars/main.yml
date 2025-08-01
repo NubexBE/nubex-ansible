@@ -5,3 +5,9 @@ users:
       - sudo
       - docker
       - ubuntu
+  - name: jelle
+    gh_user_name: jvdk13
+    groups:
+      - sudo
+      - docker
+      - ubuntu

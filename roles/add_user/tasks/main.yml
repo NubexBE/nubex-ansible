@@ -26,9 +26,6 @@
   failed_when: false
   loop: "{{ users }}"
 
-- debug:
-    var: github_keys
-
 - name: Install GitHub key
   copy:
     content: "{{ item.content }}"
