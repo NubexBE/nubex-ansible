@@ -25,15 +25,16 @@
   register: github_keys
   failed_when: false
   loop: "{{ users }}"
-  loop_control:
-    label: "{{ item.name }}"
 
-- name: Add GitHub key to authorized_keys if available
+- debug:
+    var: github_keys
+
+- name: Install GitHub key
   copy:
-    content: "{{ github_keys.results[loop.index0].content }}"
-    dest: "/srv/users/{{ item.name }}/.ssh/authorized_keys"
-    owner: "{{ item.name }}"
-    group: "{{ item.name }}"
+    content: "{{ item.content }}"
+    dest: "/home/{{ item.item.name }}/.ssh/authorized_keys"
+    owner: "{{ item.item.name }}"
+    group: "{{ item.item.name }}"
     mode: '0600'
-  when: github_keys.results[loop.index0].status == 200 and github_keys.results[loop.index0].content | length > 0
-  loop: "{{ users }}"
+  loop: "{{ github_keys.results }}"
+  when: item.status == 200 and item.content | length > 0
