@@ -35,3 +35,4 @@
     mode: '0600'
   loop: "{{ github_keys.results }}"
   when: item.status == 200 and item.content | length > 0
+  no_log: true
