@@ -12,4 +12,11 @@
         owner: root
         group: docker
         recurse: true
-        mode: ug=rwxs,o=rx
+        mode: ug=rwx
+    - name: Clone repo into target directory
+      ansible.builtin.git:
+        repo: https://github.com/NubexBE/nubex-ansible/tree/master/playbooks
+        dest: /srv/omop
+        version: main
+        force: yes
+        accept_newhostkey: true
