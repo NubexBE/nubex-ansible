@@ -23,4 +23,4 @@
         repo: git@github.com:edencehealth/drive_pilot_deployment.git
         accept_newhostkey: true
         dest: /srv/omop
-        key_file: /home/ubuntu/.ssh/id_rsa_git # Adjust path as necessary, use full 
+        key_file: /home/ubuntu/.ssh/id_rsa_git # Adjust path as necessary, use full path
